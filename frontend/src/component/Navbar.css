@@ -1,0 +1,11 @@
+.nav-link{
+    border: 0.5px solid white;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding: 4px;
+}
+#carrito{
+    color: lightskyblue;
+    border: 0.5px solid lightskyblue;
+
+}

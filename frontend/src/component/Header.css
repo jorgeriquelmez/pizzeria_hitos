@@ -1,0 +1,12 @@
+.fondo {
+    background-image: url('../../public/img/Header.jpg');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    height: 20rem;
+    margin-bottom: 40px;
+    color: white;
+    justify-items: center;  
+    align-content: center;
+  }
+  

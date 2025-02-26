@@ -1,0 +1,68 @@
+.containerCart {
+    width: 80%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.containerCart h2 {
+    text-align: center;
+    color: #333;
+}
+
+.containerCart table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.containerCart th, .containerCart td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.containerCart th {
+    background-color: #f0f0f0;
+}
+
+.totalCart {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: right;
+}
+
+.containerCart button {
+    display: inline-block; 
+    width: auto; 
+    padding: 5px 10px; 
+    margin: 0 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.containerCart button:hover {
+    background-color: #0056b3;
+}
+
+
+.containerCart>button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+tr img{
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+}
+.picture{
+    width: 60px;
+}
