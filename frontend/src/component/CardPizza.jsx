@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './CardPizza.css'
 import { useState } from 'react';
 
@@ -27,13 +28,12 @@ const CardPizza = ({ name, price, ingredients, img, description }) => {
         {ingredients.map((elemento) => (
         <li key={elemento}>-{elemento}</li>
         ))} 
-          <button onClick={handleVerMas} style={{ fontSize: '0.6rem', color :"grey" ,backgroundColor: "white", borderColor:"white" }} >(ver más)</button>
           <div className={`info-oculta ${mostrarInfo ? 'mostrar' : ''}`}>{description} </div>  
         </li>
         <li className="list-group-item text-center" style={{ fontSize: '1.5rem' }}><strong>Precio: ${price}</strong></li> 
       </ul>
       <div className="card-body d-flex justify-content-between align-items-center">
-        <a href="#" className="btn btn-light border-dark">{verMasText}</a> 
+        <Link to="/pizza/p001" className="btn btn-light border-dark">{verMasText}</Link> 
         <a href="#" className="btn btn-dark">{anadirText}</a> 
       </div>
     </div>

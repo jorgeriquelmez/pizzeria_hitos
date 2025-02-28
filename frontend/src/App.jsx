@@ -1,31 +1,25 @@
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Navbar from "./component/Navbar";
-import Home from "./component/Home"
-import Register from "./component/Register";
-import Login from "./component/Login";
-import Footer from "./component/Footer";
-import Cart from "./component/Cart";
-import Pizza from "./component/Pizza";
-
-const tabs = {
-  home: <Home />,
-  cart: <Cart />,
-  register: <Register />,
-  login: <Login />,
-  pizza: <Pizza />,
-};
+import {Navbar, Footer, NotFound, Profile} from './component/index'
+import {Home, Register, Login, Cart, Pizza} from './pages/'
 
 const App = () => {
-  const [activeTab, setActiveTab] = useState('home');
-
   return (
     <>
-      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} /> 
-      {tabs[activeTab]}
-      {/* se deja un tab dedicado a la tarjeta para mejor visualizacion */}
-      <Footer />
+      <BrowserRouter>
+        <Navbar/> 
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/register' element={<Register />}></Route>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/cart' element={<Cart />}></Route>
+          <Route path='/pizza/p001' element={<Pizza />}></Route>
+          <Route path='/profile' element={<Profile />}></Route>
+          <Route path='*' element={<NotFound />}></Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </>
   );
 };
