@@ -1,9 +1,12 @@
 import './Navbar.css';
 // import Cart from './Cart'
 import {Link} from 'react-router-dom'
+import { useContext } from 'react';
+import { CartContext } from '../store/CartContext';
 
 const Navbar = ({ activeTab }) => {
-    const total = 25000;
+    //const total = 25000;
+    const { total } = useContext(CartContext)
     const token = false;
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -24,9 +27,12 @@ const Navbar = ({ activeTab }) => {
                         </li>
                         {token ? (
                             <>
-                            {/* Se mueve profile fuera del menu oculto */}
+
                                 <li className="nav-item">
                                     <Link className="nav-link" href="#">🔒Logout</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/profile">🔓Profile</Link>
                                 </li>
                             </>
                         ) : (
@@ -48,9 +54,6 @@ const Navbar = ({ activeTab }) => {
                                     >
                                         🔐Register
                                     </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/profile">🔓Profile</Link>
                                 </li>
                             </>
                         )}
