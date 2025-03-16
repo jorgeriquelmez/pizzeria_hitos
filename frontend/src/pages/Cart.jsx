@@ -2,9 +2,11 @@ import { useContext } from 'react';
 import './Cart.css';
 import Swal from 'sweetalert2';
 import { CartContext } from '../store/CartContext';
+import { UserContext } from '../store/UserContext';
 
 const Cart = () => {
   const { items, handleSumar, handleRestar, total } = useContext(CartContext);
+  const {  token } = useContext(UserContext)
 
   const pagar = () => {
     if (total > 0) {
@@ -58,6 +60,7 @@ const Cart = () => {
         type="submit"
         className="btn btn-primary"
         onClick={pagar}
+        disabled={!token}
       >
         Pagar
       </button>

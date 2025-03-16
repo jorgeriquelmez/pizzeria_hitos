@@ -1,13 +1,16 @@
 import './Navbar.css';
 // import Cart from './Cart'
-import {Link} from 'react-router-dom'
+import {Link , NavLink} from 'react-router-dom'
 import { useContext } from 'react';
 import { CartContext } from '../store/CartContext';
+import { UserContext } from '../store/UserContext';
 
-const Navbar = ({ activeTab }) => {
+const Navbar = () => {
+    const validateRoot = ({isActive}) => isActive ? 'menu-active' : 'menu'
     //const total = 25000;
     const { total } = useContext(CartContext)
-    const token = false;
+    //const token = true;
+    const { token, handleSetTokenFalse } = useContext(UserContext)
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div className="container">
@@ -18,52 +21,52 @@ const Navbar = ({ activeTab }) => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav flex-grow-1">
                         <li className="nav-item">
-                            <Link 
-                                className={`nav-link ${activeTab === 'home' ? 'active' : ''}`} 
+                            <NavLink 
+                                className={`nav-link ${validateRoot}`} 
                                 to="/" 
-                                state={{ activeTab: 'home' }}
-                            >🍕Home</Link>
+                                
+                            >🍕Home</NavLink>
                             
                         </li>
                         {token ? (
                             <>
 
-                                <li className="nav-item">
-                                    <Link className="nav-link" href="#">🔒Logout</Link>
+                                <li className={validateRoot}>
+                                    <NavLink className="nav-link" to="/profile">🔓Profile</NavLink>
                                 </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/profile">🔓Profile</Link>
+                                <li className={validateRoot}>
+                                    <button className="nav-link" onClick={handleSetTokenFalse} to='/'>🔒Logout</button>
                                 </li>
                             </>
                         ) : (
                             <>
                                 <li className="nav-item">
-                                    <Link 
-                                        className={`nav-link ${activeTab === 'login' ? 'active' : ''}`} 
+                                    <NavLink 
+                                        className={`nav-link ${validateRoot}`} 
                                         to="/login" 
-                                        state={{ activeTab: 'login' }}
+                                        
                                     >
                                         🔐Login
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <Link 
-                                        className={`nav-link ${activeTab === 'register' ? 'active' : ''}`} 
+                                    <NavLink 
+                                        className={`nav-link ${validateRoot}`}
                                         to="/register" 
-                                        state={{ activeTab: 'register' }}
+                                        
                                     >
                                         🔐Register
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             </>
                         )}
 
                         <li className="nav-item ms-auto">
                             <Link 
-                                className={`nav-link active ${activeTab === 'cart' ? 'active' : ''}`} 
+                                className={`nav-link `} 
                                 id='carrito' 
                                 to="/cart"
-                                state={{ activeTab: 'cart' }}
+                                
                                 >🛒Total:${total.toLocaleString()}</Link>
                         </li>
                     </ul>

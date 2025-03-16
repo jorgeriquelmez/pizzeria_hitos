@@ -5,6 +5,7 @@ import {Navbar, Footer, NotFound, Profile} from './component/index'
 import {Home, Register, Login, Cart, Pizza} from './pages/'
 import   CartProvider  from './store/CartContext';
 import   HomeProvider  from './store/HomeContext';
+import UserProvider from './store/UserContext';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <BrowserRouter>
         <CartProvider>
           <HomeProvider>
+            <UserProvider>
             <Navbar/> 
             <Routes>
               <Route path='/' element={<Home />}></Route>
@@ -23,6 +25,7 @@ const App = () => {
               <Route path='*' element={<NotFound />}></Route>
             </Routes>
             <Footer />
+          </UserProvider> 
           </HomeProvider>
         </CartProvider>
        

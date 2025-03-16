@@ -27,5 +27,9 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "vite": "^6.0.5"
-  }
+  },
+  "description": "![hito1](https://i.ibb.co/vCfr6P8H/portada-hito1.png)\r ##Hito2 Registro\r ![hito2](https://i.ibb.co/3ynx3z9n/registro.png)\r ##Hito2 login\r ![hito2](https://i.ibb.co/xqTtffyj/login.png)",
+  "main": "eslint.config.js",
+  "author": "",
+  "license": "ISC"
 }
