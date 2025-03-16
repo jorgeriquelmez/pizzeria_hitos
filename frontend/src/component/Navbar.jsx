@@ -1,6 +1,6 @@
 import './Navbar.css';
 // import Cart from './Cart'
-import {Link , NavLink} from 'react-router-dom'
+import {Link , NavLink, useNavigate} from 'react-router-dom'
 import { useContext } from 'react';
 import { CartContext } from '../store/CartContext';
 import { UserContext } from '../store/UserContext';
@@ -10,7 +10,14 @@ const Navbar = () => {
     //const total = 25000;
     const { total } = useContext(CartContext)
     //const token = true;
-    const { token, handleSetTokenFalse } = useContext(UserContext)
+    const { token, handleSetTokenFalse, setUser } = useContext(UserContext)
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        handleSetTokenFalse();
+        setUser({ email: '', password: '' });
+        navigate('/login');
+      };
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div className="container">
@@ -31,11 +38,11 @@ const Navbar = () => {
                         {token ? (
                             <>
 
-                                <li className={validateRoot}>
+                                <li className={`${validateRoot}`}>
                                     <NavLink className="nav-link" to="/profile">🔓Profile</NavLink>
                                 </li>
-                                <li className={validateRoot}>
-                                    <button className="nav-link" onClick={handleSetTokenFalse} to='/'>🔒Logout</button>
+                                <li className={`${validateRoot}`}>
+                                    <button className="nav-link" onClick={handleLogout} to='/'>🔒Logout</button>
                                 </li>
                             </>
                         ) : (

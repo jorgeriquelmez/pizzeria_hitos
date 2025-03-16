@@ -1,5 +1,9 @@
 // import { Link } from "react-router-dom";
+import { UserContext } from "../store/UserContext";
+import { useContext } from "react";
+
 const Profile = () => {
+  const { handleSetTokenFalse } = useContext(UserContext)
     return (
       <>
         <div className="cardprofile" style={{ width: "18rem", margin: "0 auto" }}>
@@ -7,7 +11,7 @@ const Profile = () => {
           <div className="card-body" style={{justifyItems:'center'}}>
             <h5 className="card-title">test@test.com</h5>
             <p className="card-text"></p>
-            <a href="#" className="btn btn-primary" >Cerrar sesión</a>
+            <button className="btn btn-dark" onClick={handleSetTokenFalse} to='/login' >Cerrar sesión</button>
           </div>
         </div>
       </>

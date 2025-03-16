@@ -1,21 +1,24 @@
 import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [token, setToken] = useState(true);
+  const navigate = useNavigate()
 
   const handleSetTokenFalse = () => {
-    setToken(false); // Cambiamos el nombre de la función y actualizamos a false
+    setToken(false);
+    navigate('/login');
   };
 
   const [user, setUser] = useState({
-    email: 'test@test.com',
-    password: '123123',
+    email: '',
+    password: '',
   });
 
   return (
-    <UserContext.Provider value={{ token, handleSetTokenFalse, user }}>
+    <UserContext.Provider value={{ token, setToken, handleSetTokenFalse, user, setUser, navigate}}>
       {children}
     </UserContext.Provider>
   );
