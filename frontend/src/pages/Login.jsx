@@ -45,7 +45,7 @@ const Login = () => {
     console.log(users); // Verifica los datos del formulario
     if (email === 'test@test.com' && password === '123123') {
       setToken(true); // Actualiza el token a true
-
+      localStorage.setItem("token", true);
       setUser({ email, password }); // Actualiza el estado del usuario
       Swal.fire({
         title: "Login exitoso",
