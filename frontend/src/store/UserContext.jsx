@@ -104,6 +104,7 @@ const UserProvider = ({ children }) => {
                 email,
                 password,
             });
+            console.log(res)
             Swal.fire({
                 title: 'Registro exitoso',
                 text: 'Usuario registrado correctamente',
