@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './Register.css';
-import Swal from 'sweetalert2'
+import { UserContext } from '../store/UserContext'; 
 
 const Register = () => {
     const [users, setUsers] = useState({
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
     });
+    const { register } = useContext(UserContext);
 
     const handleChange = (e) => {
         setUsers({ ...users, [e.target.name]: e.target.value });
@@ -15,47 +16,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { email, password, confirmPassword } = users;
-
-        if (!email.trim() || !password.trim() || !confirmPassword.trim()) {
-            // alert('Por favor, todos los campos deben estar llenos');
-            Swal.fire({
-                title: "Hey!",
-                text: "Todos los campos deben estar llenos",
-                icon: "warning"
-              });
-            return; 
-        }
-
-        if (password.length < 6) { 
-            // alert('La contraseña debe tener al menos 6 caracteres');
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Algo salió mal!",
-                footer: "La contraseña debe ser minimo de 6 caracteres"
-              });
-            return; 
-        }
-
-        if (password !== confirmPassword) {
-            // alert('Las contraseñas no coinciden');
-            Swal.fire({
-                title: "Hey!",
-                text: "Las contraseñas no coinciden",
-                icon: "warning"
-              });
-            return; 
-        }
-
-        // alert ('Registro exitoso')
-        Swal.fire({
-           title: "Login exitoso",
-           text: "Bienvenido",
-           icon: "success"
-         });
-        setUsers({email:'', password:'', confirmPassword:''})
-        // Aquí iría la lógica para enviar los datos al servidor
+        register(users.email, users.password, users.confirmPassword); 
     };
 
     return (
@@ -71,42 +32,43 @@ const Register = () => {
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email</label>
                                     <input
-                                        type='email'
-                                        name='email'
+                                        type="email"
+                                        name="email"
                                         value={users.email}
                                         onChange={handleChange}
                                         className="form-control"
                                         placeholder="Enter your email"
+                                        required
                                     />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="password" className="form-label">Password</label>
                                     <input
-                                        type='password'
-                                        name='password'
+                                        type="password"
+                                        name="password"
                                         value={users.password}
                                         onChange={handleChange}
                                         className="form-control"
                                         placeholder="Enter your password"
+                                        required
                                     />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="confirmPassword" className="form-label">Repeat Password</label> 
+                                    <label htmlFor="confirmPassword" className="form-label">
+                                        Repeat Password
+                                    </label>
                                     <input
-                                        type='password'
-                                        name='confirmPassword'  
+                                        type="password"
+                                        name="confirmPassword"
                                         value={users.confirmPassword}
                                         onChange={handleChange}
                                         className="form-control"
                                         placeholder="Confirm your password"
+                                        required
                                     />
                                 </div>
                                 <div className="d-grid gap-2">
-                                    <button 
-                                    type="submit" 
-                                    className="btn btn-primary"
-                                    // disabled={!users.email || !users.password || !users.confirmPassword}
-                                    >
+                                    <button type="submit" className="btn btn-primary">
                                         Create Register
                                     </button>
                                 </div>

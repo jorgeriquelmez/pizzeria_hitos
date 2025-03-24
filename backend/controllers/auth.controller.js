@@ -88,8 +88,19 @@ const me = async (req, res) => {
   }
 };
 
+const getUsers = async (req, res) => {
+  try {
+    const users = await authModel.getAllUsers();
+    return res.json(users);
+  } catch (error) {
+    console.error("Error getting users:", error);
+    return res.status(500).json({ error: "Server error" });
+  }
+};
+
 export const authController = {
   login,
   register,
   me,
+  getUsers,
 };

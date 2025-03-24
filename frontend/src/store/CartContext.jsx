@@ -52,8 +52,11 @@ const CartProvider = ({ children }) => {
     actualizarTotal();
   }, [actualizarTotal]);
 
+  const clearCart = () => {
+    setItems([]);
+ };
   return (
-    <CartContext.Provider value={{ items, setItems, handleSumar, handleRestar, total, actualizarTotal, addItem }}>
+    <CartContext.Provider value={{ items, setItems, handleSumar, handleRestar, total, actualizarTotal, addItem, clearCart }}>
       {children}
     </CartContext.Provider>
   );

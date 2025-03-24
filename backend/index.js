@@ -1,6 +1,7 @@
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
+import { authController } from "./controllers/auth.controller.js";
 
 import authRoute from "./routes/auth.route.js";
 import checkoutRoute from "./routes/checkout.route.js";
@@ -14,6 +15,7 @@ app.use(cors());
 app.use("/api/auth", authRoute);
 app.use("/api/pizzas", pizzaRoute);
 app.use("/api/checkouts", checkoutRoute);
+app.use("/users", authController.getUsers);
 app.use((_, res) => {
   res.status(404).json({ error: "Not Found" });
 });
